@@ -1,0 +1,13 @@
+table{
+  border: 3px solid black;
+}
+.td-white{
+  width: 30px; 
+  height:30px; 
+  background-color: #fff;
+}
+.td-black{
+  width: 30px; 
+  height:30px; 
+  background-color: #000;
+}
