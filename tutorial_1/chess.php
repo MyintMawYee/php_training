@@ -10,18 +10,18 @@
 <body>
   <h1>Chessboard Using PHP</h1>
    <table>
-     <?php
-        for($row = 1; $row <= 8; $row++) {
-          echo "<tr>";
-          for($col = 1; $col <= 8; $col++) {
-            $total = $row + $col;
-            if($total % 2 == 0){
-              echo '<td class="td-white"></td>';
-            } else{
-              echo '<td class="td-black"></td>';
+        <?php
+        for ($row = 1; $row <= 8; $row++) {
+            echo "<tr>";
+            for ($col = 1; $col <= 8; $col++) {
+                $total = $row + $col;
+                if ($total % 2 == 0) {
+                    echo '<td class="td-white"></td>';
+                } else {
+                    echo '<td class="td-black"></td>';
+                }
             }
-          }
-          echo "</tr>";
+            echo "</tr>";
         }
      ?>
    </table>
