@@ -29,7 +29,7 @@
     }
 
     // Reading From CSV File 
-    $file = fopen("AllFile/username.csv","r");
+    $file = fopen("AllFile/sample.csv","r");
     echo "<br><br><h2>Reading from CSV File!</h2>";
     while(! feof($file)) {
         print_r(fgetcsv($file));
@@ -39,7 +39,7 @@
 
     //Reading From Document File
     $phpWord = \PhpOffice\PhpWord\IOFactory::load("AllFile/myCV.docx");
-    echo "<br><br><h2>Reading from CSV File!</h2>";
+    echo "<br><br><h2>Reading from Document File!</h2>";
     $sections = $phpWord->getSections();
     foreach ($sections as $key => $value) {
         $sectionElement = $value->getElements();

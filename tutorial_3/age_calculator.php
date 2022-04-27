@@ -22,27 +22,27 @@
 			</div>
 		</form>
 
-	<div class="result">
-        <?php
-	        if (isset($_POST['date_of_birth']) && $_POST['date_of_birth'] != '') {
-                echo calculateAge($_POST['date_of_birth']);
-            }
-        ?>
-	</div>
+		<div class="result">
+        	<?php
+	        	if (isset($_POST['date_of_birth']) && $_POST['date_of_birth'] != '') {
+                	echo calculateAge($_POST['date_of_birth']);
+            	}
+        	?>
+		</div>
 
-    <?php
-	//Calculation for Age 
-	function calculateAge($date_of_birth) {
-		$birth_date = new DateTime($date_of_birth);
-		$current_date = new DateTime(date('d.m.y'));
-		if ($birth_date > $current_date) {
-			echo 'Error';
-		} else {
-			$age = $current_date->diff($birth_date);
-			return 'Your Age is: ' . $age->y. ' Years '. $age->m . ' Months '. $age->d.'Days';
-		}	
-	}
-	?>
+    	<?php
+			//Calculation for Age 
+			function calculateAge($date_of_birth) {
+				$birth_date = new DateTime($date_of_birth);
+				$current_date = new DateTime(date('d.m.y'));
+				if ($birth_date > $current_date) {
+					echo 'Error';
+				} else {
+					$age = $current_date->diff($birth_date);
+					return 'Your Age is: ' . $age->y. ' Years '. $age->m . ' Months '. $age->d.'Days';
+				}	
+			}
+		?>
 	</div>
 </body>
 </html>
