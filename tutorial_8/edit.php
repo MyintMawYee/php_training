@@ -36,6 +36,13 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
         $email = $email;
     }
 
+    $age = trim($_POST["age"]);
+    if (empty($age)) {
+        $age_error = "Age is required.";
+    } else {
+        $age = $age;
+    }
+
     $phoneNumber = trim($_POST["phone_number"]);
     if (empty($phoneNumber)) {
         $phone_number_error = "Phone Number is required.";
@@ -72,6 +79,7 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
         if ($user = mysqli_fetch_assoc($query)) {
             $firstName   = $user["first_name"];
             $lastName    = $user["last_name"];
+            $lastName    = $user["age"];
             $email       = $user["email"];
             $phoneNumber = $user["phone_number"];
             $address     = $user["address"];
@@ -119,6 +127,12 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
                             <label>Last Name</label>
                             <input type="text" name="last_name" class="form-control" value="<?php echo $lastName; ?>">
                             <span class="help-block"><?php echo $last_name_error; ?></span>
+                        </div>
+
+                        <div class="form-group <?php echo (!empty($age_error)) ? 'has-error' : ''; ?>">
+                            <label>Last Name</label>
+                            <input type="text" name="age" class="form-control" value="<?php echo $age; ?>">
+                            <span class="help-block"><?php echo $age_error; ?></span>
                         </div>
 
                         <div class="form-group <?php echo (!empty($email_error)) ? 'has-error' : ''; ?>">

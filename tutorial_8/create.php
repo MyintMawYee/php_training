@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $age = trim($_POST["age"]);
     if (empty($age)) {
-        $phone_number_error = "Age is required.";
+        $age_error = "Age is required.";
     } else {
         $age = $age;
     }

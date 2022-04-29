@@ -17,6 +17,7 @@
         if ($user = mysqli_fetch_assoc($query)) {
             $firstName   = $user["first_name"];
             $lastName    = $user["last_name"];
+            $lastName    = $user["age"];
             $email       = $user["email"];
             $phoneNumber = $user["phone_number"];
             $address     = $user["address"];
@@ -45,6 +46,10 @@
                     <div class="form-group">
                         <label>Last Name</label>
                         <p class="form-control-static"><?php echo $lastName ?></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Age</label>
+                        <p class="form-control-static"><?php echo $age ?></p>
                     </div>
                     <div class="form-group">
                         <label>Email</label>
