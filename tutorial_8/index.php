@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
@@ -7,11 +8,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <div class="wrapper">
         <div class="container-fluid">
             <div class="row">
-              <h2 class="text-center">PHP CRUD Tutorial </h2>
+                <h2 class="text-center">PHP CRUD Tutorial </h2>
                 <div class="col-md-12">
                     <div class="page-header clearfix">
                         <h2 class="pull-left">Users</h2>
@@ -20,17 +22,17 @@
                     <?php
                     // Include config file
                     require_once "config.php";
-
                     // select all users
                     $data = "SELECT * FROM users";
-                    if($users = mysqli_query($conn, $data)){
-                        if(mysqli_num_rows($users) > 0){
+                    if ($users = mysqli_query($conn, $data)) {
+                        if (mysqli_num_rows($users) > 0) {
                             echo "<table class='table table-bordered table-striped'>
                                     <thead>
                                       <tr>
                                         <th>#</th>
                                         <th>First Name</th>
                                         <th>Last Name</th>
+                                        <th>Age</th>
                                         <th>Email</th>
                                         <th>Phone Number</th>
                                         <th>Address</th>
@@ -38,28 +40,29 @@
                                       </tr>
                                     </thead>
                                     <tbody>";
-                                while($user = mysqli_fetch_array($users)) {
-                                    echo "<tr>
+                            while ($user = mysqli_fetch_array($users)) {
+                                echo "<tr>
                                             <td>" . $user['id'] . "</td>
                                             <td>" . $user['first_name'] . "</td>
                                             <td>" . $user['last_name'] . "</td>
+                                            <td>" . $user['age'] . "</td>
                                             <td>" . $user['email'] . "</td>
                                             <td>" . $user['phone_number'] . "</td>
                                             <td>" . $user['address'] . "</td>
                                             <td>
-                                              <a href='read.php?id=". $user['id'] ."' title='View User' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>
-                                              <a href='edit.php?id=". $user['id'] ."' title='Edit User' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>
-                                              <a href='delete.php?id=". $user['id'] ."' title='Delete User' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>
+                                              <a href='read.php?id=" . $user['id'] . "' title='View User' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>
+                                              <a href='edit.php?id=" . $user['id'] . "' title='Edit User' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>
+                                              <a href='delete.php?id=" . $user['id'] . "' title='Delete User' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>
                                             </td>
                                           </tr>";
-                                }
-                                echo "</tbody>
+                            }
+                            echo "</tbody>
                                 </table>";
                             mysqli_free_result($users);
-                        } else{
+                        } else {
                             echo "<p class='lead'><em>No records found.</em></p>";
                         }
-                    } else{
+                    } else {
                         echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
                     }
 
@@ -71,4 +74,5 @@
         </div>
     </div>
 </body>
+
 </html>

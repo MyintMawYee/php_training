@@ -32,7 +32,12 @@
     $file = fopen("AllFile/sample.csv","r");
     echo "<br><br><h2>Reading from CSV File!</h2>";
     while(! feof($file)) {
-        print_r(fgetcsv($file));
+        $records = fgetcsv($file);
+        if (is_iterable($records)) {
+            foreach ($records as $value) {
+                echo "$value";
+            }
+        }
         echo "<br>";
     }
     fclose($file);

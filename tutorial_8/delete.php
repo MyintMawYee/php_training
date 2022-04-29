@@ -8,7 +8,7 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
     if (mysqli_query($conn, $query)) {
         header("location: index.php");
     } else {
-         echo "Something went wrong. Please try again later.";
+        echo "Something went wrong. Please try again later.";
     }
 
     mysqli_close($conn);
@@ -22,12 +22,14 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>View Record</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <div class="wrapper1">
         <div class="container-fluid">
@@ -38,7 +40,7 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
                     </div>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                         <div class="alert alert-danger fade in">
-                            <input type="hidden" name="id" value="<?php echo trim($_GET["id"]); ?>"/>
+                            <input type="hidden" name="id" value="<?php echo trim($_GET["id"]); ?>" />
                             <p>Are you sure you want to delete this record?</p><br>
                             <p>
                                 <input type="submit" value="Yes" class="btn btn-danger">
@@ -51,4 +53,5 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
         </div>
     </div>
 </body>
+
 </html>
