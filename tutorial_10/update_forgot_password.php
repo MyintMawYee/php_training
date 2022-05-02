@@ -34,7 +34,7 @@
                         //var_dump($row['exp_date']);
 
                         if ($row['exp_date'] >= $curDate) { ?>
-                            <form action="update-forget-password.php" method="post">
+                            <form action="update_forgot_password.php" method="post">
                                 <input type="hidden" name="email" value="<?php echo $email; ?>">
                                 <input type="hidden" name="reset_link_token" value="<?php echo $token; ?>">
                                 <div class="form-group">

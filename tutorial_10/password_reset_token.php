@@ -33,7 +33,7 @@ if (isset($_POST['password_reset_token']) && $_POST['email']) {
 
         $update = mysqli_query($conn, "UPDATE users set reset_link_token='" . $token . "' ,exp_date='" . $expDate . "' WHERE email='" . $emailId . "'");
 
-        $link = "<a href='http://localhost:8000/reset-password.php?key=" . $emailId . "&token=" . $token . "'>Click To Reset password</a>";
+        $link = "<a href='http://{$_SERVER['HTTP_HOST']}/reset-password.php?key=" . $emailId . "&token=" . $token . "'>Click To Reset password</a>";
 
         try {
             $mail = new PHPMailer;
