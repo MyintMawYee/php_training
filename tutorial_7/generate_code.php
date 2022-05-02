@@ -16,7 +16,7 @@
 	    $file = $path . $_POST['name'] . '.png';
 	    $input_text = $_POST['name'];
 	    echo "<center><h2>Your QR Code</h2></center>";
-	    if ($file!=='' && $input_text !==''){
+	    if ($file!=='' && $input_text !=='') {
 ?>
             <center><img src='image/<?php echo $_POST['name'] ?>.png'></center>
     <?php

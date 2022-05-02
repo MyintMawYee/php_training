@@ -20,8 +20,11 @@ $sql = "CREATE TABLE `php_crud`.`users` (
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
     age INT(10) NOT NULL,
+    user_password VARCHAR(100) NOT NULL,
     email VARCHAR(255) NOT NULL,
     phone_number VARCHAR(15) NOT NULL,
+    reset_link_token varchar(255) NULL,
+    exp_date TIMESTAMP NULL,
     address VARCHAR(255) NOT NULL
 );";
 $conn->query($sql);
