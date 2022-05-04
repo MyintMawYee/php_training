@@ -10,7 +10,6 @@ class TodoController extends Controller
 {
     public function index()
     {
-
         $todo = Todo::all();
         return view('index')->with('todos', $todo);
     }
@@ -20,18 +19,15 @@ class TodoController extends Controller
     }
     public function details(Todo $todo)
     {
-
         return view('details')->with('todos', $todo);
     }
 
-    public function edit()
+    public function edit(Todo $todo)
     {
-
-        return view('edit');
+        return view('edit')->with('todos', $todo);
     }
     public function update(Todo $todo)
     {
-
         try {
             $this->validate(request(), [
                 'name' => ['required'],
@@ -43,7 +39,6 @@ class TodoController extends Controller
 
         $data = request()->all();
 
-
         $todo->name = $data['name'];
         $todo->description = $data['description'];
         $todo->save();
@@ -52,17 +47,13 @@ class TodoController extends Controller
 
         return redirect('/');
     }
-    public function delete(Todo $todo){
-
+    public function delete(Todo $todo)
+    {
         $todo->delete();
-
         return redirect('/');
-
     }
     public function store()
     {
-
-
         try {
             $this->validate(request(), [
                 'name' => ['required'],
@@ -71,9 +62,7 @@ class TodoController extends Controller
         } catch (ValidationException $e) {
         }
 
-
         $data = request()->all();
-
 
         $todo = new Todo();
         //On the left is the field name in DB and on the right is field name in Form/view
