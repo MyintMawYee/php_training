@@ -31,7 +31,6 @@
                     if (!$query || mysqli_num_rows($query) > 0) {
 
                         $row = mysqli_fetch_assoc($query);
-                        //var_dump($row['exp_date']);
 
                         if ($row['exp_date'] >= $curDate) { ?>
                             <form action="update_forgot_password.php" method="post">

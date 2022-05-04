@@ -59,7 +59,7 @@ if (isset($_POST['password_reset_token']) && $_POST['email']) {
             $mail->isHTML(true);
             $mail->Body    = 'Click On This Link to Reset Password ' . $link . '';
             $mail->Send();
-            //var_dump($mail->Send());
+
             echo "Check Your Email and Click on the link sent to your email";
         } catch (\Exception $e) {
             echo "Mail Error - >" . $e->getMessage();
