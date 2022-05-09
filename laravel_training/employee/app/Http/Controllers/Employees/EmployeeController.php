@@ -85,10 +85,12 @@ class EmployeeController extends Controller
      * @return \Illuminate\Support\Collection
      */
     //import excel file
-    public function import()
+    public function import(Request $request)
     {
-        Excel::import(new UsersImport, request()->file('file'));
-
+        $request->validate([
+            'file' => 'required',
+        ]);
+        Excel::import(new UsersImport, $request->file('file'));
         return back();
     }
 }

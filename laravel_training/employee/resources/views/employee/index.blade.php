@@ -8,9 +8,12 @@ Employee
     <div class="card-body">
         <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <input type="file" name="file" class="form-control">
+            <input type="file" name="file" class="form-control @error('file') is-invalid @enderror" value="{{ old('file') }}">
+            @error('file')
+            <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
             <br>
-            <button class="btn btn-success">Import Employee Data</button>
+            <button class="btn btn-success" type="submit">Import Employee Data</button>
             <a class="btn btn-warning" href="{{ route('export') }}">Export Employee Data</a>
         </form>
     </div>
