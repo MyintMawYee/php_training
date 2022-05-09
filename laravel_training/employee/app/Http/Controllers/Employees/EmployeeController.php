@@ -7,6 +7,9 @@ use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use App\Contracts\Services\Employee\EmployeeServiceInterface;
+use App\Exports\UsersExport;
+use App\Imports\UsersImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class EmployeeController extends Controller
 {
@@ -26,8 +29,8 @@ class EmployeeController extends Controller
     }
     public function index()
     {
-        $employee = Employee::all();
-        return view('employee.index')->with('employees', $employee);
+        $employees = Employee::all();
+        return view('employee.index', compact('employees'));
     }
     public function create()
     {
@@ -35,26 +38,23 @@ class EmployeeController extends Controller
     }
     public function store(Request $request)
     {
-        try {
-            $this->validate(request(), [
-                'first_name' => ['required'],
-                'last_name' => ['required'],
-                'email' => ['required']
-            ]);
-        } catch (ValidationException $e) {
-        }
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required',
+            'city' => 'required',
+            'country' => 'required',
+            'job_title' => 'required'
+        ]);
 
         $employee = $this->employeeInterface->saveEmployee($request);
         return redirect('/');
     }
-    public function details(Employee $employee)
-    {
-        return view('employee.details')->with('employees', $employee);
-    }
+
     public function delete(Employee $employee)
     {
         $msg = $this->employeeInterface->delete($employee);
-        return redirect('/');
+        return redirect('/')->with('success', 'You have successfully deleted');
     }
     public function edit(Employee $employee)
     {
@@ -62,16 +62,33 @@ class EmployeeController extends Controller
     }
     public function update(Request $request, Employee $employee)
     {
-        try {
-            $this->validate(request(), [
-                'first_name' => ['required'],
-                'last_name' => ['required'],
-                'email' => ['required']
-            ]);
-        } catch (ValidationException $e) {
-        }
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required',
+            'city' => 'required',
+            'country' => 'required',
+            'job_title' => 'required'
+        ]);
 
         $employee = $this->employeeInterface->updateEmployee($request, $employee);
-        return redirect('/');
+        return redirect('/')->with('success', 'You have successfully updated');
+    }
+
+    //export excel file
+    public function export()
+    {
+        return Excel::download(new UsersExport, 'employees.xlsx');
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    //import excel file
+    public function import()
+    {
+        Excel::import(new UsersImport, request()->file('file'));
+
+        return back();
     }
 }

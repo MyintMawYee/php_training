@@ -26,7 +26,7 @@
 
     <nav class="navbar navbar-light bg-light">
         <div class="container">
-            <a href="/"><span class="navbar-brand mb-0 h1">Employee</span></a>
+            <a href="/"><span class="navbar-brand mb-0 h1">Employee List</span></a>
             <a href="/create"><span class="btn btn-primary">Create New Employee</span></a>
         </div>
     </nav>
@@ -34,16 +34,10 @@
     <div class="container">
 
         @yield('content')
-        @if(session()->has('success'))
-        <div class="alert alert-success">
-
-            {{ session()->get('success') }}
-
-        </div>
-        @endif
+        
 
     </div>
-
+    
 </body>
 
 </html>
