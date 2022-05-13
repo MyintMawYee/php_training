@@ -10,6 +10,8 @@ use App\Contracts\Services\Employee\EmployeeServiceInterface;
 use App\Services\Exports\UsersExport;
 use App\Services\Imports\UsersImport;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Mail\SendDeleteMail;
+use Illuminate\Support\Facades\Mail;
 
 class EmployeeController extends Controller
 {
@@ -61,6 +63,13 @@ class EmployeeController extends Controller
     public function delete(Employee $employee)
     {
         $msg = $this->employeeInterface->delete($employee);
+
+        $details = [
+            "name" => $employee->name,
+            "message" => "Your record have been deleted",
+        ];
+
+        Mail::to($employee->email)->send(new SendDeleteMail($details));
         return redirect('/')->with('success', 'You have successfully deleted');
     }
 

@@ -23,3 +23,6 @@ Route::post('/update/{employee}', 'Employees\EmployeeController@update');
 
 Route::get('/export', 'Employees\EmployeeController@export')->name('export');
 Route::post('/import', 'Employees\EmployeeController@import')->name('import');
+
+Route::post('send-mail','Employees\EmployeeController@sendMail');
+//Route::get('mail','Employees\EmployeeController@mail');
