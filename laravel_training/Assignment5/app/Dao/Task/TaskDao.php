@@ -22,32 +22,26 @@ class TaskDao implements TaskDaoInterface
      */
     public function savePost(Request $request)
     {
-        $data = request()->all();
+        $post = Post::updateOrCreate(['id' => $request->id], [
+            'title' => $request->title,
+            'description' => $request->description
+        ]);
 
-        $task = new Post();
-        //On the left is the field name in DB and on the right is field name in Form/view
-        $task->name = $data['name'];
-        $task->description = $data['description'];
-        $task->save();
-
-        session()->flash('success', 'Todo created succesfully');
+        return response()->json(['code' => 200, 'message' => 'Post Created successfully', 'data' => $post], 200);
     }
 
     //To delete task
     public function delete($task)
     {
-        Post::find($task->id)->delete();
+        $post = Post::find($task)->delete();
+        return response()->json(['success' => 'Post Deleted successfully']);
     }
 
     //To update task
-    public function updateTask(Request $request, $task)
+    public function updateTask($task)
     {
-        $data = request()->all();
-        //On the left is the field name in DB and on the right is field name in Form/view
-        $task->name = $data['name'];
-        $task->description = $data['description'];
-        $task->save();
+        $post = Post::find($task);
 
-        session()->flash('success', 'Todo created succesfully');
+        return response()->json($post);
     }
 }

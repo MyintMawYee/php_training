@@ -47,14 +47,8 @@ class PostController extends Controller
             'title'       => 'required|max:255',
             'description' => 'required',
         ]);
-
-        $post = Post::updateOrCreate(['id' => $request->id], [
-            'title' => $request->title,
-            'description' => $request->description
-        ]);
-
-
-        return response()->json(['code' => 200, 'message' => 'Post Created successfully', 'data' => $post], 200);
+        $post = $this->taskInterface->savePost($request);
+        return $post;
     }
 
     /**
@@ -65,9 +59,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = Post::find($id);
-
-        return response()->json($post);
+        $post = $this->taskInterface->updateTask($id);
+        return $post;
     }
 
 
@@ -79,9 +72,6 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        $post = Post::find($id)->delete();
-        //$post = $this->taskInterface->delete($id);
-
-        return response()->json(['success' => 'Post Deleted successfully']);
+        $post = $this->taskInterface->delete($id);
     }
 }

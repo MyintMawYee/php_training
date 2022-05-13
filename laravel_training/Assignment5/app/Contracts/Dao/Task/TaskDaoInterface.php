@@ -20,5 +20,5 @@ interface TaskDaoInterface
 	public function delete($task);
 
 	//To update task
-	public function updateTask(Request $request, $task);
+	public function updateTask($task);
 }

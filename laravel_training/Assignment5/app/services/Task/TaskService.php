@@ -44,8 +44,8 @@ class TaskService implements TaskServiceInterface
 	}
 
 	//To update task
-	public function updateTask(Request $request, $task)
+	public function updateTask($task)
 	{
-		return $this->taskDao->updateTask($request, $task);
+		return $this->taskDao->updateTask($task);
 	}
 }
